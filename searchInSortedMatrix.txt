@@ -1,0 +1,39 @@
+Given a sorted matrix write a function that returns an 
+array of the row and column indices of the target number
+Time --> O(log(n))
+Space --> O(1)
+function searchInSortedMatrix(matrix,target){
+  let r = 0
+  let c = matrix[0].length - 1
+  while(!inBound(r,c,matrix)){
+    let currValue = matrix[r][c]
+    if(currValue === target){
+      return [r,c]
+    }else if(target < currValue){
+      c--
+    }else {
+      r++
+    }
+  }
+  return [-1,-1]
+}
+
+-- Helper -> isInbound returns true if inbound
+r = 0
+c = matrix[0].length - 1
+while(!inBound(r,c,matrix)){
+  let currValue = matrix[r][c]
+  if(currValue === target){
+    return [r,c]
+  }else if(target < currValue){
+    c--
+  }else {
+    r++ 
+  }
+}
+
+return [-1,-1]
+
+function inBound(r,c,matrix){
+  return r >= matrix.length || r < 0 || c < 0 || c >= matrix[0].length
+}
